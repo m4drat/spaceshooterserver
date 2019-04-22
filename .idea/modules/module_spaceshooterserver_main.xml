@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="module_spaceshooterserver_main" default="compile.module.spaceshooterserver_main">
+  <dirname property="module.spaceshooterserver_main.basedir" file="${ant.file.module_spaceshooterserver_main}"/>
+  
+  <property name="module.jdk.home.spaceshooterserver_main" value="${project.jdk.home}"/>
+  <property name="module.jdk.bin.spaceshooterserver_main" value="${project.jdk.bin}"/>
+  <property name="module.jdk.classpath.spaceshooterserver_main" value="${project.jdk.classpath}"/>
+  
+  <property name="compiler.args.spaceshooterserver_main" value="-encoding UTF-8 -source 8 -target 8 ${compiler.args}"/>
+  
+  <property name="spaceshooterserver_main.output.dir" value="${module.spaceshooterserver_main.basedir}/../../out/production/classes"/>
+  <property name="spaceshooterserver_main.testoutput.dir" value="${module.spaceshooterserver_main.basedir}/../../out/production/classes"/>
+  
+  <path id="spaceshooterserver_main.module.bootclasspath">
+    <!-- Paths to be included in compilation bootclasspath -->
+  </path>
+  
+  <path id="spaceshooterserver_main.module.production.classpath">
+    <path refid="${module.jdk.classpath.spaceshooterserver_main}"/>
+    <path refid="library.gradle:_org.springframework.boot:spring-boot-starter-web:2.0.5.release.classpath"/>
+    <path refid="library.gradle:_org.springframework.boot:spring-boot-starter-json:2.0.5.release.classpath"/>
+    <path refid="library.gradle:_org.springframework.boot:spring-boot-starter:2.0.5.release.classpath"/>
+    <path refid="library.gradle:_org.springframework.boot:spring-boot-starter-tomcat:2.0.5.release.classpath"/>
+    <path refid="library.gradle:_org.hibernate.validator:hibernate-validator:6.0.12.final.classpath"/>
+    <path refid="library.gradle:_org.springframework:spring-webmvc:5.0.9.release.classpath"/>
+    <path refid="library.gradle:_org.springframework:spring-web:5.0.9.release.classpath"/>
+    <path refid="library.gradle:_org.springframework.boot:spring-boot-autoconfigure:2.0.5.release.classpath"/>
+    <path refid="library.gradle:_org.springframework.boot:spring-boot:2.0.5.release.classpath"/>
+    <path refid="library.gradle:_org.springframework.boot:spring-boot-starter-logging:2.0.5.release.classpath"/>
+    <path refid="library.gradle:_javax.annotation:javax.annotation-api:1.3.2.classpath"/>
+    <path refid="library.gradle:_org.springframework:spring-context:5.0.9.release.classpath"/>
+    <path refid="library.gradle:_org.springframework:spring-aop:5.0.9.release.classpath"/>
+    <path refid="library.gradle:_org.springframework:spring-beans:5.0.9.release.classpath"/>
+    <path refid="library.gradle:_org.springframework:spring-expression:5.0.9.release.classpath"/>
+    <path refid="library.gradle:_org.springframework:spring-core:5.0.9.release.classpath"/>
+    <path refid="library.gradle:_org.yaml:snakeyaml:1.19.classpath"/>
+    <path refid="library.gradle:_com.fasterxml.jackson.datatype:jackson-datatype-jdk8:2.9.6.classpath"/>
+    <path refid="library.gradle:_com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.9.6.classpath"/>
+    <path refid="library.gradle:_com.fasterxml.jackson.module:jackson-module-parameter-names:2.9.6.classpath"/>
+    <path refid="library.gradle:_com.fasterxml.jackson.core:jackson-databind:2.9.6.classpath"/>
+    <path refid="library.gradle:_org.apache.tomcat.embed:tomcat-embed-websocket:8.5.34.classpath"/>
+    <path refid="library.gradle:_org.apache.tomcat.embed:tomcat-embed-core:8.5.34.classpath"/>
+    <path refid="library.gradle:_org.apache.tomcat.embed:tomcat-embed-el:8.5.34.classpath"/>
+    <path refid="library.gradle:_javax.validation:validation-api:2.0.1.final.classpath"/>
+    <path refid="library.gradle:_org.jboss.logging:jboss-logging:3.3.2.final.classpath"/>
+    <path refid="library.gradle:_com.fasterxml:classmate:1.3.4.classpath"/>
+    <path refid="library.gradle:_ch.qos.logback:logback-classic:1.2.3.classpath"/>
+    <path refid="library.gradle:_org.apache.logging.log4j:log4j-to-slf4j:2.10.0.classpath"/>
+    <path refid="library.gradle:_org.slf4j:jul-to-slf4j:1.7.25.classpath"/>
+    <path refid="library.gradle:_org.springframework:spring-jcl:5.0.9.release.classpath"/>
+    <path refid="library.gradle:_com.fasterxml.jackson.core:jackson-annotations:2.9.0.classpath"/>
+    <path refid="library.gradle:_com.fasterxml.jackson.core:jackson-core:2.9.6.classpath"/>
+    <path refid="library.gradle:_ch.qos.logback:logback-core:1.2.3.classpath"/>
+    <path refid="library.gradle:_org.slf4j:slf4j-api:1.7.25.classpath"/>
+    <path refid="library.gradle:_org.apache.logging.log4j:log4j-api:2.10.0.classpath"/>
+  </path>
+  
+  <path id="spaceshooterserver_main.runtime.production.module.classpath">
+    <pathelement location="${spaceshooterserver_main.output.dir}"/>
+    <path refid="library.gradle:_org.springframework.boot:spring-boot-starter-web:2.0.5.release.classpath"/>
+    <path refid="library.gradle:_org.springframework.boot:spring-boot-starter-json:2.0.5.release.classpath"/>
+    <path refid="library.gradle:_org.springframework.boot:spring-boot-starter:2.0.5.release.classpath"/>
+    <path refid="library.gradle:_org.springframework.boot:spring-boot-starter-tomcat:2.0.5.release.classpath"/>
+    <path refid="library.gradle:_org.hibernate.validator:hibernate-validator:6.0.12.final.classpath"/>
+    <path refid="library.gradle:_org.springframework:spring-webmvc:5.0.9.release.classpath"/>
+    <path refid="library.gradle:_org.springframework:spring-web:5.0.9.release.classpath"/>
+    <path refid="library.gradle:_org.springframework.boot:spring-boot-autoconfigure:2.0.5.release.classpath"/>
+    <path refid="library.gradle:_org.springframework.boot:spring-boot:2.0.5.release.classpath"/>
+    <path refid="library.gradle:_org.springframework.boot:spring-boot-starter-logging:2.0.5.release.classpath"/>
+    <path refid="library.gradle:_javax.annotation:javax.annotation-api:1.3.2.classpath"/>
+    <path refid="library.gradle:_org.springframework:spring-context:5.0.9.release.classpath"/>
+    <path refid="library.gradle:_org.springframework:spring-aop:5.0.9.release.classpath"/>
+    <path refid="library.gradle:_org.springframework:spring-beans:5.0.9.release.classpath"/>
+    <path refid="library.gradle:_org.springframework:spring-expression:5.0.9.release.classpath"/>
+    <path refid="library.gradle:_org.springframework:spring-core:5.0.9.release.classpath"/>
+    <path refid="library.gradle:_org.yaml:snakeyaml:1.19.classpath"/>
+    <path refid="library.gradle:_com.fasterxml.jackson.datatype:jackson-datatype-jdk8:2.9.6.classpath"/>
+    <path refid="library.gradle:_com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.9.6.classpath"/>
+    <path refid="library.gradle:_com.fasterxml.jackson.module:jackson-module-parameter-names:2.9.6.classpath"/>
+    <path refid="library.gradle:_com.fasterxml.jackson.core:jackson-databind:2.9.6.classpath"/>
+    <path refid="library.gradle:_org.apache.tomcat.embed:tomcat-embed-websocket:8.5.34.classpath"/>
+    <path refid="library.gradle:_org.apache.tomcat.embed:tomcat-embed-core:8.5.34.classpath"/>
+    <path refid="library.gradle:_org.apache.tomcat.embed:tomcat-embed-el:8.5.34.classpath"/>
+    <path refid="library.gradle:_javax.validation:validation-api:2.0.1.final.classpath"/>
+    <path refid="library.gradle:_org.jboss.logging:jboss-logging:3.3.2.final.classpath"/>
+    <path refid="library.gradle:_com.fasterxml:classmate:1.3.4.classpath"/>
+    <path refid="library.gradle:_ch.qos.logback:logback-classic:1.2.3.classpath"/>
+    <path refid="library.gradle:_org.apache.logging.log4j:log4j-to-slf4j:2.10.0.classpath"/>
+    <path refid="library.gradle:_org.slf4j:jul-to-slf4j:1.7.25.classpath"/>
+    <path refid="library.gradle:_org.springframework:spring-jcl:5.0.9.release.classpath"/>
+    <path refid="library.gradle:_com.fasterxml.jackson.core:jackson-annotations:2.9.0.classpath"/>
+    <path refid="library.gradle:_com.fasterxml.jackson.core:jackson-core:2.9.6.classpath"/>
+    <path refid="library.gradle:_ch.qos.logback:logback-core:1.2.3.classpath"/>
+    <path refid="library.gradle:_org.slf4j:slf4j-api:1.7.25.classpath"/>
+    <path refid="library.gradle:_org.apache.logging.log4j:log4j-api:2.10.0.classpath"/>
+  </path>
+  
+  <path id="spaceshooterserver_main.module.classpath">
+    <path refid="${module.jdk.classpath.spaceshooterserver_main}"/>
+    <pathelement location="${spaceshooterserver_main.output.dir}"/>
+    <path refid="library.gradle:_org.springframework.boot:spring-boot-starter-web:2.0.5.release.classpath"/>
+    <path refid="library.gradle:_org.springframework.boot:spring-boot-starter-json:2.0.5.release.classpath"/>
+    <path refid="library.gradle:_org.springframework.boot:spring-boot-starter:2.0.5.release.classpath"/>
+    <path refid="library.gradle:_org.springframework.boot:spring-boot-starter-tomcat:2.0.5.release.classpath"/>
+    <path refid="library.gradle:_org.hibernate.validator:hibernate-validator:6.0.12.final.classpath"/>
+    <path refid="library.gradle:_org.springframework:spring-webmvc:5.0.9.release.classpath"/>
+    <path refid="library.gradle:_org.springframework:spring-web:5.0.9.release.classpath"/>
+    <path refid="library.gradle:_org.springframework.boot:spring-boot-autoconfigure:2.0.5.release.classpath"/>
+    <path refid="library.gradle:_org.springframework.boot:spring-boot:2.0.5.release.classpath"/>
+    <path refid="library.gradle:_org.springframework.boot:spring-boot-starter-logging:2.0.5.release.classpath"/>
+    <path refid="library.gradle:_javax.annotation:javax.annotation-api:1.3.2.classpath"/>
+    <path refid="library.gradle:_org.springframework:spring-context:5.0.9.release.classpath"/>
+    <path refid="library.gradle:_org.springframework:spring-aop:5.0.9.release.classpath"/>
+    <path refid="library.gradle:_org.springframework:spring-beans:5.0.9.release.classpath"/>
+    <path refid="library.gradle:_org.springframework:spring-expression:5.0.9.release.classpath"/>
+    <path refid="library.gradle:_org.springframework:spring-core:5.0.9.release.classpath"/>
+    <path refid="library.gradle:_org.yaml:snakeyaml:1.19.classpath"/>
+    <path refid="library.gradle:_com.fasterxml.jackson.datatype:jackson-datatype-jdk8:2.9.6.classpath"/>
+    <path refid="library.gradle:_com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.9.6.classpath"/>
+    <path refid="library.gradle:_com.fasterxml.jackson.module:jackson-module-parameter-names:2.9.6.classpath"/>
+    <path refid="library.gradle:_com.fasterxml.jackson.core:jackson-databind:2.9.6.classpath"/>
+    <path refid="library.gradle:_org.apache.tomcat.embed:tomcat-embed-websocket:8.5.34.classpath"/>
+    <path refid="library.gradle:_org.apache.tomcat.embed:tomcat-embed-core:8.5.34.classpath"/>
+    <path refid="library.gradle:_org.apache.tomcat.embed:tomcat-embed-el:8.5.34.classpath"/>
+    <path refid="library.gradle:_javax.validation:validation-api:2.0.1.final.classpath"/>
+    <path refid="library.gradle:_org.jboss.logging:jboss-logging:3.3.2.final.classpath"/>
+    <path refid="library.gradle:_com.fasterxml:classmate:1.3.4.classpath"/>
+    <path refid="library.gradle:_ch.qos.logback:logback-classic:1.2.3.classpath"/>
+    <path refid="library.gradle:_org.apache.logging.log4j:log4j-to-slf4j:2.10.0.classpath"/>
+    <path refid="library.gradle:_org.slf4j:jul-to-slf4j:1.7.25.classpath"/>
+    <path refid="library.gradle:_org.springframework:spring-jcl:5.0.9.release.classpath"/>
+    <path refid="library.gradle:_com.fasterxml.jackson.core:jackson-annotations:2.9.0.classpath"/>
+    <path refid="library.gradle:_com.fasterxml.jackson.core:jackson-core:2.9.6.classpath"/>
+    <path refid="library.gradle:_ch.qos.logback:logback-core:1.2.3.classpath"/>
+    <path refid="library.gradle:_org.slf4j:slf4j-api:1.7.25.classpath"/>
+    <path refid="library.gradle:_org.apache.logging.log4j:log4j-api:2.10.0.classpath"/>
+  </path>
+  
+  <path id="spaceshooterserver_main.runtime.module.classpath">
+    <pathelement location="${spaceshooterserver_main.output.dir}"/>
+    <path refid="library.gradle:_org.springframework.boot:spring-boot-starter-web:2.0.5.release.classpath"/>
+    <path refid="library.gradle:_org.springframework.boot:spring-boot-starter-json:2.0.5.release.classpath"/>
+    <path refid="library.gradle:_org.springframework.boot:spring-boot-starter:2.0.5.release.classpath"/>
+    <path refid="library.gradle:_org.springframework.boot:spring-boot-starter-tomcat:2.0.5.release.classpath"/>
+    <path refid="library.gradle:_org.hibernate.validator:hibernate-validator:6.0.12.final.classpath"/>
+    <path refid="library.gradle:_org.springframework:spring-webmvc:5.0.9.release.classpath"/>
+    <path refid="library.gradle:_org.springframework:spring-web:5.0.9.release.classpath"/>
+    <path refid="library.gradle:_org.springframework.boot:spring-boot-autoconfigure:2.0.5.release.classpath"/>
+    <path refid="library.gradle:_org.springframework.boot:spring-boot:2.0.5.release.classpath"/>
+    <path refid="library.gradle:_org.springframework.boot:spring-boot-starter-logging:2.0.5.release.classpath"/>
+    <path refid="library.gradle:_javax.annotation:javax.annotation-api:1.3.2.classpath"/>
+    <path refid="library.gradle:_org.springframework:spring-context:5.0.9.release.classpath"/>
+    <path refid="library.gradle:_org.springframework:spring-aop:5.0.9.release.classpath"/>
+    <path refid="library.gradle:_org.springframework:spring-beans:5.0.9.release.classpath"/>
+    <path refid="library.gradle:_org.springframework:spring-expression:5.0.9.release.classpath"/>
+    <path refid="library.gradle:_org.springframework:spring-core:5.0.9.release.classpath"/>
+    <path refid="library.gradle:_org.yaml:snakeyaml:1.19.classpath"/>
+    <path refid="library.gradle:_com.fasterxml.jackson.datatype:jackson-datatype-jdk8:2.9.6.classpath"/>
+    <path refid="library.gradle:_com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.9.6.classpath"/>
+    <path refid="library.gradle:_com.fasterxml.jackson.module:jackson-module-parameter-names:2.9.6.classpath"/>
+    <path refid="library.gradle:_com.fasterxml.jackson.core:jackson-databind:2.9.6.classpath"/>
+    <path refid="library.gradle:_org.apache.tomcat.embed:tomcat-embed-websocket:8.5.34.classpath"/>
+    <path refid="library.gradle:_org.apache.tomcat.embed:tomcat-embed-core:8.5.34.classpath"/>
+    <path refid="library.gradle:_org.apache.tomcat.embed:tomcat-embed-el:8.5.34.classpath"/>
+    <path refid="library.gradle:_javax.validation:validation-api:2.0.1.final.classpath"/>
+    <path refid="library.gradle:_org.jboss.logging:jboss-logging:3.3.2.final.classpath"/>
+    <path refid="library.gradle:_com.fasterxml:classmate:1.3.4.classpath"/>
+    <path refid="library.gradle:_ch.qos.logback:logback-classic:1.2.3.classpath"/>
+    <path refid="library.gradle:_org.apache.logging.log4j:log4j-to-slf4j:2.10.0.classpath"/>
+    <path refid="library.gradle:_org.slf4j:jul-to-slf4j:1.7.25.classpath"/>
+    <path refid="library.gradle:_org.springframework:spring-jcl:5.0.9.release.classpath"/>
+    <path refid="library.gradle:_com.fasterxml.jackson.core:jackson-annotations:2.9.0.classpath"/>
+    <path refid="library.gradle:_com.fasterxml.jackson.core:jackson-core:2.9.6.classpath"/>
+    <path refid="library.gradle:_ch.qos.logback:logback-core:1.2.3.classpath"/>
+    <path refid="library.gradle:_org.slf4j:slf4j-api:1.7.25.classpath"/>
+    <path refid="library.gradle:_org.apache.logging.log4j:log4j-api:2.10.0.classpath"/>
+  </path>
+  
+  
+  <patternset id="excluded.from.module.spaceshooterserver_main">
+    <patternset refid="ignored.files"/>
+  </patternset>
+  
+  <patternset id="excluded.from.compilation.spaceshooterserver_main">
+    <patternset refid="excluded.from.module.spaceshooterserver_main"/>
+  </patternset>
+  
+  <path id="spaceshooterserver_main.module.sourcepath">
+    <dirset dir="${module.spaceshooterserver_main.basedir}/../../src/main">
+      <include name="java"/>
+      <include name="resources"/>
+    </dirset>
+  </path>
+  
+  
+  <target name="compile.module.spaceshooterserver_main" depends="compile.module.spaceshooterserver_main.production,compile.module.spaceshooterserver_main.tests" description="Compile module spaceshooterserver_main"/>
+  
+  <target name="compile.module.spaceshooterserver_main.production" depends="register.custom.compilers" description="Compile module spaceshooterserver_main; production classes">
+    <mkdir dir="${spaceshooterserver_main.output.dir}"/>
+    <javac2 destdir="${spaceshooterserver_main.output.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true" executable="${module.jdk.bin.spaceshooterserver_main}/javac">
+      <compilerarg line="${compiler.args.spaceshooterserver_main}"/>
+      <bootclasspath refid="spaceshooterserver_main.module.bootclasspath"/>
+      <classpath refid="spaceshooterserver_main.module.production.classpath"/>
+      <src refid="spaceshooterserver_main.module.sourcepath"/>
+      <patternset refid="excluded.from.compilation.spaceshooterserver_main"/>
+    </javac2>
+    
+    <copy todir="${spaceshooterserver_main.output.dir}">
+      <fileset dir="${module.spaceshooterserver_main.basedir}/../../src/main/java">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+      <fileset dir="${module.spaceshooterserver_main.basedir}/../../src/main/resources">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+    </copy>
+  </target>
+  
+  <target name="compile.module.spaceshooterserver_main.tests" depends="register.custom.compilers,compile.module.spaceshooterserver_main.production" description="compile module spaceshooterserver_main; test classes" unless="skip.tests"/>
+  
+  <target name="clean.module.spaceshooterserver_main" description="cleanup module">
+    <delete dir="${spaceshooterserver_main.output.dir}"/>
+    <delete dir="${spaceshooterserver_main.testoutput.dir}"/>
+  </target>
+</project>
