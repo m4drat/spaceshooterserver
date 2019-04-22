@@ -1,5 +1,6 @@
 package com.madrat.spaceshooter.apiserver.resourcereprs;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
@@ -14,7 +15,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 @Entity
-@Table(name = "usersInfo", uniqueConstraints={
+@Table(name = "users_info", uniqueConstraints={
         @UniqueConstraint(columnNames = {"serveruuid" , "clientuuid"})
 })
 @EntityListeners(AuditingEntityListener.class)
@@ -22,6 +23,7 @@ import java.util.regex.Pattern;
 public class User implements Comparable<User> {
 
     @Id
+    @JsonIgnore
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
@@ -42,11 +44,13 @@ public class User implements Comparable<User> {
     @Column(nullable = false, updatable = false)
     @Temporal(TemporalType.TIMESTAMP)
     @CreatedDate
+    @JsonIgnore
     private Date createdAt;
 
     @Column(nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
     @LastModifiedDate
+    @JsonIgnore
     private Date updatedAt;
 
     public User() {}
@@ -158,5 +162,17 @@ public class User implements Comparable<User> {
     @Override
     public int compareTo(User user) {
         return Integer.compare(this.score, user.score);
+    }
+
+    @Override
+    public String toString() {
+        String json = "";
+        json += "{" + "\n" +
+                "\t\"clientuuid\": \"" + clientuuid + "\"\n" +
+                "\t\"serveruuid\": \"" + serveruuid + "\"\n" +
+                "\t\"username\": \"" + username + "\"\n" +
+                "\t\"score\": " + score + "\n" +
+                "}";
+        return json;
     }
 }

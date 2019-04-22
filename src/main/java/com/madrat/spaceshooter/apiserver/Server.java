@@ -16,12 +16,12 @@ import java.util.List;
 public class Server {
 
     /**
-     * mysqld --initialize
+     * start mysql Server
      * mysql -u root -p tUWx****************
      *   create database users;
-     *   create user 'spaceshooteradm'@'%' identified by 'R9si****************';
+     *   use users;
+     *   create table users_info(id int NOT NULL PRIMARY KEY AUTO_INCREMENT, clientuuid varchar(64) unique, serveruuid varchar(64) unique, score int, username varchar(64), created_at DATETIME, updated_at DATETIME);
      *   grant all on users.* to 'spaceshooteradm'@'%';
-     *    create table users_info(id int NOT NULL PRIMARY KEY AUTO_INCREMENT, clientuuid varchar(64) unique, serveruuid varchar(64) unique, score int, username varchar(64), created_at DATETIME, updated_at DATETIME);
      * */
 
     public static void main(String[] args) {

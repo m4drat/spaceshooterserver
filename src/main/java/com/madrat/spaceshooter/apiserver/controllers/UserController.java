@@ -25,15 +25,28 @@ public class UserController {
 
     @PostMapping("/updatescore")
     public ResponseEntity updateScore(@RequestBody User user) {
+        // initial check for structure
         if (user.isValid()) {
+            // check for fields
             String checkResult = user.checkFields();
             if (checkResult.equals(ErrorCode.OK)) {
                 try {
-                    userRepository.save(user);
-                    return ResponseEntity.ok(new SimpleResponse("answer", ErrorCode.OK));
+                    // User already exists
+                    if (userRepository.existsByclientuuid(user.getClientuuid()) && userRepository.existsByserveruuid(user.getServeruuid())) {
+                        System.out.println("[+] Updating info for user Entity: " + user.toString());
+                        userRepository.setScoreByClientUUIDbyServerUUID(user.getScore(), user.getServeruuid(), user.getClientuuid());
+                        return ResponseEntity.ok(new SimpleResponse("updated", ErrorCode.OK));
+                    } else {
+                        System.out.println("[+] Creating user Entity: " + user.toString());
+                        userRepository.save(user);
+                        return ResponseEntity.ok(new SimpleResponse("created", ErrorCode.OK));
+                    }
+                } catch (javax.persistence.RollbackException e) {
+                    e.printStackTrace();
+                    return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new SimpleResponse("duplicate entry", ErrorCode.ERR_DUP));
                 } catch (Exception e) {
                     e.printStackTrace();
-                    return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new SimpleResponse("duplicate entry", ErrorCode.DUP));
+                    return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new SimpleResponse("unexpected error", ErrorCode.ERR_UNEXPECTED));
                 }
             }
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new SimpleResponse("incorrect format", checkResult));
