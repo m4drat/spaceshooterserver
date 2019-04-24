@@ -2,6 +2,7 @@ package com.madrat.spaceshooter.apiserver.controllers;
 
 import com.madrat.spaceshooter.apiserver.database.UserRepository;
 import com.madrat.spaceshooter.apiserver.resourcereprs.*;
+import com.madrat.spaceshooter.apiserver.utils.logger.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -9,23 +10,35 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
+import java.util.Enumeration;
 import java.util.List;
 
 @RestController
 public class UserController {
 
     @Autowired
-    UserRepository userRepository;
+    private UserRepository userRepository;
 
     @RequestMapping(value = "/scoreboard", method = RequestMethod.GET)
-    public List<User> scoreboard(@RequestParam(value="count", defaultValue="10") int count) {
+    public List<User> scoreboard(HttpServletRequest request, @RequestParam(value="count", defaultValue="10") int count) {
         Pageable limit = PageRequest.of(0, count);
+        Logger.i("request to: " + request.getRequestURI() + "\n" + "\tquery string: " + request.getQueryString());
         return userRepository.findAllByOrderByScoreDesc(limit);
     }
 
     @PostMapping("/updatescore")
-    public ResponseEntity updateScore(@RequestBody User user) {
+    public ResponseEntity updateScore(HttpServletRequest request, @RequestBody User user) {
         // initial check for structure
+        Logger.i("request to: " + request.getRequestURI() + "\n" + "\theaders: ");
+        Enumeration<String> headerNames = request.getHeaderNames();
+        while(headerNames.hasMoreElements()) {
+            String headerName = headerNames.nextElement();
+            System.out.println("\t\t[" + headerName + "] : [" + request.getHeader(headerName) + "]");
+        }
+        System.out.println("\tparams:");
+        System.out.println(user.toString(2, "\t"));
+
         if (user.isValid()) {
             // check for fields
             String checkResult = user.checkFields();
@@ -49,6 +62,7 @@ public class UserController {
                     return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new SimpleResponse("unexpected error", ErrorCode.ERR_UNEXPECTED));
                 }
             }
+            Logger.w("suspicious parameter value found!\n" + "\t\"" + checkResult + "\" : " + user.get(checkResult));
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new SimpleResponse("incorrect format", checkResult));
         }
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new SimpleResponse("Cannot parse your request (check field names)", ErrorCode.ERR_PARSE));

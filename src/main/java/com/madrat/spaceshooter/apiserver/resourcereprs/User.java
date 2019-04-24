@@ -2,6 +2,9 @@ package com.madrat.spaceshooter.apiserver.resourcereprs;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import org.hibernate.annotations.Generated;
+import org.hibernate.annotations.GenerationTime;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
@@ -10,6 +13,7 @@ import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+import java.util.Collections;
 import java.util.Date;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -32,6 +36,7 @@ public class User implements Comparable<User> {
     private String clientuuid;
 
     @NotEmpty
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     @Column(name = "serveruuid", unique = true)
     private String serveruuid;
 
@@ -43,14 +48,15 @@ public class User implements Comparable<User> {
 
     @Column(nullable = false, updatable = false)
     @Temporal(TemporalType.TIMESTAMP)
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     @CreatedDate
-    @JsonIgnore
     private Date createdAt;
 
     @Column(nullable = false)
+    @Generated(GenerationTime.ALWAYS)
     @Temporal(TemporalType.TIMESTAMP)
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     @LastModifiedDate
-    @JsonIgnore
     private Date updatedAt;
 
     public User() {}
@@ -60,6 +66,8 @@ public class User implements Comparable<User> {
         this.clientuuid = clientUUID;
         this.username = userName;
         this.score = score;
+
+        this.createdAt = new Date();
     }
 
     public boolean isValid() {
@@ -129,9 +137,27 @@ public class User implements Comparable<User> {
         this.updatedAt = updatedAt;
     }
 
+    public String get(String field) {
+        switch (field) {
+            case "clientuuid": {
+                return this.clientuuid;
+            }
+            case "serveruuid": {
+                return this.serveruuid;
+            }
+            case "username": {
+                return this.username;
+            }
+            case "score": {
+                return Integer.toString(this.score);
+            }
+        }
+        return null;
+    }
+
     public String checkFields() {
         final String uuidRegexp = "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$";
-        final String usernameRegexp = "^[a-zA-Z0-9]*$";
+        final String usernameRegexp = "^[a-zA-Z0-9_]*$";
         final String scoreRegexp = "^[0-9]*$";
 
         Pattern uuidPattern = Pattern.compile(uuidRegexp);
@@ -173,6 +199,18 @@ public class User implements Comparable<User> {
                 "\t\"username\": \"" + username + "\"\n" +
                 "\t\"score\": " + score + "\n" +
                 "}";
+        return json;
+    }
+
+    public String toString(int indentCount, String indentStr) {
+        String indenter = String.join("", Collections.nCopies(indentCount, indentStr));
+        String json = "";
+        json += indenter + "{" + "\n" +
+                indenter + "\t\"clientuuid\": \"" + clientuuid + "\"\n" +
+                indenter + "\t\"serveruuid\": \"" + serveruuid + "\"\n" +
+                indenter + "\t\"username\": \"" + username + "\"\n" +
+                indenter + "\t\"score\": " + score + "\n" +
+                indenter + "}";
         return json;
     }
 }
